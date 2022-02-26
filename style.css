@@ -1,0 +1,19 @@
+.grid {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.holder {
+    display: flex;
+    min-height: 50px;
+}
+
+
+
+.block {
+    
+    background-color: brown;
+    flex: 1 1 10px;
+    align-items: stretch;
+}
