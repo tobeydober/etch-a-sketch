@@ -2,6 +2,12 @@ const grid = document.querySelector(".grid")
 const input = document.querySelector('.input')
 const button = document.querySelector('.button')
 const RESETBUTTON = document.querySelector('.resetBoard')
+const RAINBOWBUTTON = document.querySelector('.rainbowButton')
+const BLACKBUTTON = document.querySelector('.blackButton')
+
+
+let fillColour = 'black'
+let blackFill = true
 let value = 5
 let clicked = false
 
@@ -16,7 +22,6 @@ let makeColumn = () => {
         let newBlock = document.createElement('div')
         newBlock.className = "holder"
         grid.appendChild(newBlock)
-                
     }
 }
 
@@ -49,22 +54,21 @@ let blocks = document.querySelectorAll('.block')
 
 
 
-let backgroundBlock = (i) => {
+let backgroundBlock = () => {
     blocks[i].style.background = 'grey'
     blocks[i].style.border = '0.1px solid black'   
 }
 
 //highlights the block by adding event listener mouseover
 // let hoverBlock = () => {
+    
 //     for (let i = 0; i < blocks.length; i++) {
 //         blocks[i].addEventListener('mouseenter', function(e) {
 //             backgroundBlock(i)
 //         }) 
 //     }
-//     clicked = false
-    
 // }
-
+// hoverBlock()
 // //returns block to original colour after hoverMouse
 
 // let leaveBlock = () => {
@@ -77,17 +81,44 @@ let backgroundBlock = (i) => {
 //     }
     
 // }
+let colour = (blackFill) => {
+    if (blackFill) {
+        fillColour = 'black'
+    } else {
+        const randomR = Math.floor(Math.random() * 256)
+        const randomG = Math.floor(Math.random() * 256)
+        const randomB = Math.floor(Math.random() * 256)
+        fillColour = `rgb(${randomR}, ${randomG}, ${randomB})`
+    }
+
+}
 
 let fillBlock = () => {
     for (let i = 0; i < blocks.length; i++) {
         blocks[i].addEventListener('click', function(e) {
-            blocks[i].style.background = 'black'
+            colour(blackFill)
+            blocks[i].style.background = fillColour
         })
     }
 }
 
 // hoverBlock()
-// leaveBlock()
+// leaveBlock()]
+let pickBlack = () => {
+    BLACKBUTTON.addEventListener('click', ()=> {
+        blackFill = true
+    })
+}
+
+let pickRainbow = () => {
+    RAINBOWBUTTON.addEventListener('click', () => {
+        blackFill = false
+    })
+}
+
+
+pickBlack()
+pickRainbow()
 fillBlock()
 
 
